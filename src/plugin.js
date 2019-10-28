@@ -78,7 +78,11 @@ export default class MathTypePlugin extends Plugin {
         if ( integrationProperties.target ) {
             // Instance of the integration associated to this editor instance
             integration = new CKEditor5Integration( integrationProperties );
-            integration.init();
+            try {
+                integration.init();
+            } catch (e) {
+                return;
+            }
             integration.listeners.fire( 'onTargetReady', {} );
 
             integration.checkElement();
